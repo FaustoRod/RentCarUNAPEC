@@ -1,0 +1,124 @@
+﻿@page
+@using RentCarUnapec.Core.Models
+@model RentCarUnapec.Pages.CarRentInformation.SearchModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+<div class="col-md-12">
+    <form method="post">
+        <div class="form-row align-items-center">
+            <div class="form-group col-md-3">
+                <label asp-for="Manufacturer" class="control-label"></label>
+                <select asp-for="Manufacturer" asp-items="Model.ManufacturerList" class="form-control" id="ManufacturerList"></select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Model" class="control-label"></label>
+                <select asp-for="Model" asp-items="Model.ModelList" class="form-control" id="ModelList" disabled></select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="VehicleType" class="control-label"></label>
+                <select asp-for="VehicleType" asp-items="Model.TypesList" class="form-control" id="TypeList"></select>
+            </div>
+            <div class="form-group col-md-3" style="margin-top: 30px;">
+                <button class="btn btn-primary" type="submit" id="searchBtn">Buscar <span class="fas fa-search"></span></button>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                @Html.HiddenFor(x => x.ClientId)
+                <label asp-for="ClientId" class="control-label"></label>
+                <div class="input-group">
+                    <input class="form-control" readonly="readonly" asp-for="ClientName" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><span class="fas fa-search" data-toggle="modal" data-target="#clientSearchModal"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="FromDate" class="control-label reportDate"></label>
+                <input asp-for="FromDate" class="form-control" />
+                <label id="dateValidation" class="text-danger" hidden>Fecha Desde debe ser Menor que Fecha Hasta</label>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="ToDate" class="control-label reportDate"></label>
+                <input asp-for="ToDate" class="form-control" />
+            </div>
+            <div class="form-group col-md-3" style="margin-top: 30px;">
+                <button class="btn btn-danger" onclick="cleanForm()" type="button">Limpiar <span class="fas fa-times"></span></button>
+            </div>
+        </div>
+    </form>
+    @Html.HiddenFor(x => x.SearchDone)
+    @if (Model.SearchDone)
+    {
+        <a class="btn btn-primary" id="reportBtn" asp-controller="Report" asp-action="GetCarRentReport" asp-route-manufacturerId="@Model.Manufacturer" 
+           asp-route-modelId="@Model.Model"
+           asp-route-clientId="@Model.ClientId"
+           asp-route-typeId="@Model.VehicleType"
+           asp-route-fromDate="@Model.FromDate"
+           asp-route-toDate="@Model.ToDate">Generar Reporte <span class="fas fa-file"></span></a>
+    }
+    
+</div>
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].RentSequence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].VehicleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].Vehicle.VehicleTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].ClientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].RentDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].ReturnDay)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CarRentInformation)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClienteName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReturnDay)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="Client/_ClientSearch" model="new Client()"></partial>
+
+@section Scripts{
+    <script src="~/js/CarRent/carRentSearch.js"></script>
+    <script src="~/js/CarRent/carRentClientSearch.js"></script>
+
+}

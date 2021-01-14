@@ -1,0 +1,35 @@
+﻿@page
+@using RentCarUnapec.Core.Models
+@model RentCarUnapec.Pages.VehicleType.IndexModel
+
+@{
+    ViewData["Title"] = Model.ModelName;
+}
+
+<h1>@Model.ModelName</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary" data-toggle="modal" data-target="#vehicleTypeCreateModal">Crear Nuevo <i class="fas fa-plus"></i></a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleType[0].Description)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="vehicleTypeTable">
+    <partial name="_VehicleTypeList" model="Model.VehicleType"/>
+    </tbody>
+</table>
+
+<partial name="_Create" model="new VehicleType()"/>
+<partial name="_Edit" model="new VehicleType()"/>
+<partial name="_Delete"/>
+@section Scripts{
+    <script src="js/VehicleType/vehicleType.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

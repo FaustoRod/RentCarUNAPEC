@@ -1,0 +1,16 @@
+﻿@model IEnumerable<RentCarUnapec.Core.Models.VehicleType>
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <button class="btn btn-link" data-toggle="modal" data-target="#vehicleTypeEditModal" data-typeId="@item.Id" data-typeName="@item.Description"><span class="fas fa-edit"></span></button>
+                <button class="btn btn-link" data-toggle="modal" data-target="#vehicleTypeDeleteModal" data-typeId="@item.Id" data-typeName="@item.Description"><span class="fas fa-trash"></span></button>
+            </td>
+        </tr>
+    }
+}

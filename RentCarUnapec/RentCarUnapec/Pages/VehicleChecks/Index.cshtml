@@ -1,0 +1,52 @@
+﻿@page
+@using RentCarUnapec.Core.Enums
+@model RentCarUnapec.Pages.VehicleChecks.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Chequeos de Vehiculo</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleCheck[0].CarRentInformationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleCheck[0].CarRentInformation.ClientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleCheck[0].CreationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.VehicleCheck) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarRentInformation.Vehicle.VehicleFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarRentInformation.Client.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @{
+                    if (item.CarRentInformation.RentStateId == (int)RentStateEnum.CheckWaiting)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a>
+                        WriteLiteral(" | ");;
+                    }
+                }<a asp-page="./Details" asp-route-id="@item.Id"><span class="fas fa-eye"></span></a>
+
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

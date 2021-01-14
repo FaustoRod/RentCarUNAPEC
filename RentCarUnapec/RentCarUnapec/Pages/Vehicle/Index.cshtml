@@ -1,0 +1,55 @@
+﻿@page
+@model RentCarUnapec.Pages.Vehicle.IndexModel
+
+@{
+    ViewData["Title"] = "Vehiculos";
+}
+
+<h1 id="testTitle">Vehiculos</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Crear Nuevo <span class="fas fa-plus"></span></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].VehicleFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].ColorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vehicle[0].PlateNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Vehicle)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ColorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlateNumber)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id"><span class="fas fa-eye"></span></a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id"><span class="fas fa-trash"></span></a> 
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_VehiclesList" model="Model.Vehicle" />
+@section Scripts{
+    <script src="js/test.js"></script>
+}

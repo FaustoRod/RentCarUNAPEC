@@ -1,0 +1,28 @@
+﻿@model IEnumerable<RentCarUnapec.Core.Models.Vehicle>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlateNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model.Manufacturer.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleType.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color.Description)
+        </td>
+        <td>
+            <button type="button" onclick="getVehicleInfo(this)" id="@item.Id" class="vehicleSelectBtn btn btn-light"
+                    data-vehicleName="@item.VehicleFullName"
+                    data-vehicleColor="@item.Color.Description"
+                    data-vehiclePlate="@item.PlateNumber"><span class="fas fa-car-side"></span></button>
+        </td>
+    </tr>
+}
+

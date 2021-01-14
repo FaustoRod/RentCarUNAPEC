@@ -1,0 +1,97 @@
+﻿@page
+@model RentCarUnapec.Pages.Vehicle.CreateModel
+@Html.AntiForgeryToken()
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<h1>Crear Vehiculo</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.Model.ManufacturerId" class="control-label"></label>
+                        <select class="form-control" asp-items="Model.ManufacturerList" asp-for="ManufacturerId">
+                            <option>Seleccione</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.ModelId" class="control-label"></label>
+                        <select asp-for="Vehicle.ModelId" class="form-control" asp-items="Model.ModelList" disabled>
+                            <option>Seleccione</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.ColorId" class="control-label"></label>
+                        <select asp-for="Vehicle.ColorId" class="form-control" asp-items="Model.ColorList"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.VehicleTypeId" class="control-label"></label>
+                        <select asp-for="Vehicle.VehicleTypeId" class="form-control" asp-items="Model.VehicleTypeList"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.FuelTypeId" class="control-label"></label>
+                        <select asp-for="Vehicle.FuelTypeId" class="form-control" asp-items="Model.FuelTypeList"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.TransmissionTypeId" class="control-label"></label>
+                        <select asp-for="Vehicle.TransmissionTypeId" class="form-control" asp-items="Model.TransmissionList"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.ChassisNumber" class="control-label"></label>
+                        <input asp-for="Vehicle.ChassisNumber" class="form-control alphaNumberOnlyInputNoSpace" maxlength="17" onkeyup="toUpperCaseInput(this)" />
+                        <span asp-validation-for="Vehicle.ChassisNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.EngineNumber" class="control-label"></label>
+                        <input asp-for="Vehicle.EngineNumber" class="form-control alphaNumberOnlyInputNoSpace" maxlength="9" onkeyup="toUpperCaseInput(this)" />
+                        <span asp-validation-for="Vehicle.EngineNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Vehicle.PlateNumber" class="control-label"></label>
+                        <input asp-for="Vehicle.PlateNumber" class="form-control alphaNumberOnlyInputNoSpace" maxlength="10" onkeyup="toUpperCaseInput(this)" />
+                        <span asp-validation-for="Vehicle.PlateNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Vehicle/vehicleCreate.js"></script>
+    <script src="~/js/site.js"></script>
+}

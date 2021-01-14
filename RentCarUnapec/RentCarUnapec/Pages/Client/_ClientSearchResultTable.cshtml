@@ -1,0 +1,25 @@
+﻿@model IEnumerable<RentCarUnapec.Core.Models.Client>
+@{
+    if (Model.Any())
+    {
+        foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdentityNumber)
+                </td>
+                <td>
+                    <button class="btn btn-light" id="@item.Id" data-name="@item.Name" data-identity="@item.IdentityNumber" onclick="getClientInfo(this)"><span class="fas fa-user"></span></button>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr class="table-danger">
+            <td colspan="3"> Sin Resultado</td>
+        </tr>
+    }
+}

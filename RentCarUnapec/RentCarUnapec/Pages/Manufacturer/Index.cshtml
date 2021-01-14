@@ -1,0 +1,35 @@
+﻿@page
+@model RentCarUnapec.Pages.Manufacturer.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Marcas de Vehiculo</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Crear Nuevo <span class="fas fa-plus"></span></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Manufacturer) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id"><span class="fas fa-trash"></span></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,69 @@
+﻿@page
+@model RentCarUnapec.Pages.Client.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Modificar Cliente</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Client.ClientType" class="control-label"></label>
+                    <select asp-for="Client.ClientType" class="form-control" asp-items="Model.ClientTypeList" onchange="validateClientType()"></select>
+                    <span asp-validation-for="Client.ClientType" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Client.Name" class="control-label"></label>
+                    <input asp-for="Client.Name" class="form-control letterOnlyInput" />
+                    <span asp-validation-for="Client.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Client.IdentificationType" class="control-label"></label>
+                    <select asp-for="Client.IdentificationType" class="form-control" asp-items="Model.IdentificationTypeList" onchange="clearIdentification()"></select>
+                    <span asp-validation-for="Client.IdentificationType" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Client.IdentityNumber" class="control-label"></label>
+                    <input asp-for="Client.IdentityNumber" class="form-control numberOnlyInput" />
+                    <span asp-validation-for="Client.IdentityNumber" class="text-danger"></span>
+                    <span class="text-danger" id="invalidaCedula" hidden>Identificacion Invalida</span>
+                    <span class="text-success" id="validaCedula" hidden>Identificacion Valida</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Client.CreditCardNumber" class="control-label"></label>
+                    <input asp-for="Client.CreditCardNumber" class="form-control numberOnlyInput" maxlength="16" />
+                    <span asp-validation-for="Client.CreditCardNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Client.CreditLimit" class="control-label"></label>
+                    <input asp-for="Client.CreditLimit" class="form-control numberOnlyInput" maxlength="5" />
+                    <span asp-validation-for="Client.CreditLimit" class="text-danger"></span>
+                </div>
+            </div>
+            <input type="hidden" asp-for="Client.Id" />
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" id="clientGuardarBtn" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index" class="btn btn-light">Volver <span class="fas fa-undo"></span></a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Client/clientForm.js"></script>
+
+}

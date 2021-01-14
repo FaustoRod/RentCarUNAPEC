@@ -1,0 +1,34 @@
+﻿@page
+@model RentCarUnapec.Pages.VehicleType.EditModel
+
+@{
+    ViewData["Title"] = "Modificar";
+}
+
+<h1>Modificar Tipo de Vehiculo</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VehicleType.Description" class="control-label"></label>
+                <input asp-for="VehicleType.Description" class="form-control letterOnlyInput" />
+                <span asp-validation-for="VehicleType.Description" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="VehicleType.Id" />
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

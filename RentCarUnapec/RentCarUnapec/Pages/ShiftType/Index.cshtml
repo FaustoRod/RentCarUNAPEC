@@ -1,0 +1,41 @@
+﻿@page
+@model RentCarUnapec.Pages.ShiftType.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Create New <span class="fas fa-plus"></span></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftType[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShiftType[0].TimeDescription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ShiftType) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeDescription)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id"><span class="fas fa-trash"></span></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

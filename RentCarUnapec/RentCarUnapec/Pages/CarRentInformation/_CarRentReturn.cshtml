@@ -1,0 +1,29 @@
+﻿<div class="modal" tabindex="-1" role="dialog" id="carRentReturnModal" aria-labelledby="carRentReturnModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="carRentReturnModalLabel">Retornar Vehiculo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="carRentId"/>
+                <div class="row">
+                    <div class="col-md-2"><label>Vehiculo:</label></div>
+                    <div class="col-md-10"><label id="nombreVehiculo"></label></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><label>Cliente:</label></div>
+                    <div class="col-md-10"><label id="nombreCliente"></label></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="SaveReturn()">Aceptar Retorno</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>  
+        </div>
+    </div>
+</div>
+
+

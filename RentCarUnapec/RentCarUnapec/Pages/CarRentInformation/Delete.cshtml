@@ -1,0 +1,100 @@
+﻿@page
+@model RentCarUnapec.Pages.CarRentInformation.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CarRentInformation</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.RentSequence)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.RentSequence)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.RentState)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.RentState)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.RentDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.RentDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.ReturnDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.ReturnDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.AmountPerDay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.AmountPerDay)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.RentDays)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.RentDays)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.Comment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.Comment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.Employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.Employee.IdentityNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.Vehicle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.Vehicle.ChassisNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.Client)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.Client.CreditCardNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.CreationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.CreationDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.UpdateDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.UpdateDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarRentInformation.Active)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarRentInformation.Active)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="CarRentInformation.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

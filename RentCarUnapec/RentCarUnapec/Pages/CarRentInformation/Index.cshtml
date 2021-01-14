@@ -1,0 +1,109 @@
+﻿@page
+@using RentCarUnapec.Core.Enums
+@model RentCarUnapec.Pages.CarRentInformation.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Rentas de Vehiculo</h1>
+<br />
+<div class="col-md-12">
+    <form method="post">
+        <div class="form-row align-items-center">
+            <div class="form-group col-md-3">
+                <label asp-for="Manufacturer" class="control-label"></label>
+                <select asp-for="Manufacturer" asp-items="Model.ManufacturerList" class="form-control" id="ManufacturerList"></select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Model" class="control-label"></label>
+                <select asp-for="Model" asp-items="Model.ModelList" class="form-control" id="ModelList" disabled></select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="State" class="control-label"></label>
+                <select asp-for="State" asp-items="Model.StatesList" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-3" style="margin-top: 30px;">
+                <button class="btn btn-primary" type="submit">Buscar <span class="fas fa-search"></span></button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].RentStateId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].VehicleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRentInformation[0].ClientId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CarRentInformation != null && Model.CarRentInformation.Any())
+        {
+            @foreach (var item in Model.CarRentInformation)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RentState.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vehicle.VehicleFullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.Name)
+                    </td>
+                    <td>
+                        @if (item.RentStateId == (int)RentStateEnum.CheckWaiting)
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.Id"><span class="fas fa-edit"></span></a>
+                            WriteLiteral(" | ");
+
+                        }
+                        <a asp-page="./Details" asp-route-id="@item.Id"><span class="fas fa-eye"></span></a>
+                        @{
+                            if (item.RentStateId == (int)RentStateEnum.CheckWaiting)
+                            {
+                                WriteLiteral("  | ");
+                                <a asp-page="../VehicleChecks/Create" asp-route-id="@item.Id"><span class="fas fa-check-double"></span></a>
+
+                            }
+                            else if (item.RentStateId == (int)RentStateEnum.Active)
+                            {
+                                WriteLiteral("| ");
+                                <button class="btn btn-link" data-toggle="modal" data-target="#carRentReturnModal"
+                                        data-carrentid="@item.Id"
+                                        data-vehiclename="@item.Vehicle.VehicleFullName"
+                                        data-client="@item.Client.Name">
+                                    <span class="fas fa-car"></span>
+                                </button>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr class="table-danger">
+                <td colspan="4"><h4> Sin Resultado </h4></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+@section Scripts{
+    <script src="js/CarRent/carRentReturnModal.js"></script>
+    <script src="js/CarRent/carRentSearch.js"></script>
+}
+<partial name="_CarRentReturn"></partial>

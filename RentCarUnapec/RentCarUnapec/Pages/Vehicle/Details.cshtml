@@ -1,0 +1,62 @@
+﻿@page
+@model RentCarUnapec.Pages.Vehicle.DetailsModel
+
+@{
+    ViewData["Title"] = "Informacion";
+}
+
+<h1>Informacion <span class="fas fa-info-circle"></span></h1>
+<br/>
+<div class="col-md-8 offset-md-2">
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Vehicle.Model.ManufacturerId" class="control-label"></label>
+                <input asp-for="Vehicle.Model.Manufacturer.Description" class="form-control" disabled="disabled"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Vehicle.ModelId" class="control-label"></label>
+                <input asp-for="Vehicle.Model.Description" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Vehicle.ColorId" class="control-label"></label>
+                <input asp-for="Vehicle.ColorName" class="form-control" disabled="disabled"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Vehicle.VehicleTypeId" class="control-label"></label>
+                <input asp-for="Vehicle.TypeName" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Vehicle.FuelTypeId" class="control-label"></label>
+                <input asp-for="Vehicle.FuelType.Description" class="form-control" disabled="disabled"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Vehicle.TransmissionTypeId" class="control-label"></label>
+                <input asp-for="Vehicle.TransmissionType.Description" class="form-control" disabled="disabled"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Vehicle.PlateNumber" class="control-label"></label>
+                <input asp-for="Vehicle.PlateNumber" class="form-control" disabled="disabled"/>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Vehicle.EngineNumber" class="control-label"></label>
+                <input asp-for="Vehicle.EngineNumber" class="form-control" disabled="disabled" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Vehicle.ChassisNumber" class="control-label"></label>
+                <input asp-for="Vehicle.ChassisNumber" class="form-control" disabled="disabled" />
+            </div>
+        </div>
+        <div>
+            <a asp-page="./Edit" asp-route-id="@Model.Vehicle.Id" class="btn btn-primary">Editar <span class="fas fa-edit"></span></a> |
+            <a asp-page="Index" class="btn btn-light">Volver <span class="fas fa-undo"></span></a>
+        </div>
+    </form>
+</div>
+

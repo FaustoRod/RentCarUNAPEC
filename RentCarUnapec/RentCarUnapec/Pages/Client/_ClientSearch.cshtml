@@ -1,0 +1,55 @@
+﻿@model RentCarUnapec.Core.Models.Client
+
+<div class="modal fade" id="clientSearchModal" tabindex="-2" role="dialog" aria-labelledby="clientSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="clientSearchModalLabel">Clientes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input class="form-control letterOnlyInput" asp-for="Name" id="clientName"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label asp-for="IdentityNumber" class="control-label"></label>
+                                    <div class="input-group">
+                                        <input class="form-control" asp-for="IdentityNumber" id="clientIdentity"/>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button"><span class="fas fa-search" onclick="getClients()"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IdentityNumber)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientSearchBody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

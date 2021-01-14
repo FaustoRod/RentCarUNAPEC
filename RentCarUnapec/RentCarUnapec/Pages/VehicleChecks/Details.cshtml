@@ -1,0 +1,121 @@
+﻿@page
+@model RentCarUnapec.Pages.VehicleChecks.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1>Detalle de Chequeo</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.CarRentInformationId)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.VehicleCheck.CarRentInformation.Vehicle.VehicleFullName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.CarRentInformation.ClientId)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.VehicleCheck.CarRentInformation.Client.Name)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.HasScratch)
+        </dt>
+        <dd class="col-sm-8">
+            @{
+            if (Model.VehicleCheck.HasScratch)
+            {
+            <span class="fas fa-check"></span>
+            }
+            else
+            {
+            <span class="fas fa-times"></span>
+            }
+            }
+
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.HasSpare)
+        </dt>
+        <dd class="col-sm-8">
+            @{
+            if (Model.VehicleCheck.HasSpare)
+            {
+            <span class="fas fa-check"></span>
+            }
+            else
+            {
+            <span class="fas fa-times"></span>
+            }
+            }
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.HasJackScrew)
+        </dt>
+        <dd class="col-sm-8">
+            @{
+            if (Model.VehicleCheck.HasJackScrew)
+            {
+            <span class="fas fa-check"></span>
+            }
+            else
+            {
+            <span class="fas fa-times"></span>
+            }
+            }
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.HasBrokenWind)
+        </dt>
+        <dd class="col-sm-8">
+            @{
+            if (Model.VehicleCheck.HasBrokenWind)
+            {
+            <span class="fas fa-check"></span>
+            }
+            else
+            {
+            <span class="fas fa-times"></span>
+            }
+            }
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.LeftUpperTire)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.VehicleCheck.LeftUpperTire)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.RightUpperTire)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.VehicleCheck.RightUpperTire)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.LeftBottomTire)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.VehicleCheck.LeftBottomTire)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.RightBottomTire)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.VehicleCheck.RightBottomTire)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.VehicleCheck.FuelTankId)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.VehicleCheck.FuelTank.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.VehicleCheck.Id"><span class="fas fa-edit"></span></a> |
+    <a asp-page="./Index">Volver</a>
+</div>

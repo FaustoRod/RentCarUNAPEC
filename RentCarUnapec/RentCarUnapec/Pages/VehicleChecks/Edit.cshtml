@@ -1,0 +1,119 @@
+﻿@page
+@model RentCarUnapec.Pages.VehicleChecks.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Modificar Chequeo</h1>
+
+<hr />
+<fieldset>
+    <legend>Informacion de la Renta</legend>
+    <div class="row">
+        <div class="col-md-6 row">
+            <div class="col-md-2">
+                @Html.DisplayNameFor(model => model.CarRentInformation.VehicleId)
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.CarRentInformation.Vehicle.VehicleFullName)
+            </div>
+        </div>
+        <div class="col-md-6 row">
+            <div class="col-md-2">
+                @Html.DisplayNameFor(model => model.CarRentInformation.ClientId)
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.CarRentInformation.Client.Name)
+            </div>
+        </div>
+    </div>
+</fieldset>
+<hr />
+<fieldset>
+    <legend>Informacion del Chequeo</legend>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(x => x.VehicleCheck.CarRentInformationId)
+                @Html.HiddenFor(x => x.VehicleCheck.EmployeeId)
+                <input type="hidden" asp-for="VehicleCheck.Id" />
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="VehicleCheck.FuelTankId" class="control-label"></label>
+                            <select asp-for="VehicleCheck.FuelTankId" class="form-control" asp-items="Model.FuelTankList"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="VehicleCheck.HasScratch" /> @Html.DisplayNameFor(model => model.VehicleCheck.HasScratch)
+                            </label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="VehicleCheck.HasSpare" /> @Html.DisplayNameFor(model => model.VehicleCheck.HasSpare)
+                            </label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="VehicleCheck.HasJackScrew" /> @Html.DisplayNameFor(model => model.VehicleCheck.HasJackScrew)
+                            </label>
+                        </div>
+                        <div class="form-group form-check-inline">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="VehicleCheck.HasBrokenWind" /> @Html.DisplayNameFor(model => model.VehicleCheck.HasBrokenWind)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="VehicleCheck.LeftUpperTire" class="control-label"></label>
+                            <input asp-for="VehicleCheck.LeftUpperTire" class="form-control letterOnlyInput" />
+                            <span asp-validation-for="VehicleCheck.LeftUpperTire" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="VehicleCheck.RightUpperTire" class="control-label"></label>
+                            <input asp-for="VehicleCheck.RightUpperTire" class="form-control letterOnlyInput" />
+                            <span asp-validation-for="VehicleCheck.RightUpperTire" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="VehicleCheck.LeftBottomTire" class="control-label"></label>
+                            <input asp-for="VehicleCheck.LeftBottomTire" class="form-control letterOnlyInput" />
+                            <span asp-validation-for="VehicleCheck.LeftBottomTire" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="VehicleCheck.RightBottomTire" class="control-label"></label>
+                            <input asp-for="VehicleCheck.RightBottomTire" class="form-control letterOnlyInput" />
+                            <span asp-validation-for="VehicleCheck.RightBottomTire" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</fieldset>
+
+
+<div>
+    <a asp-page="./Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

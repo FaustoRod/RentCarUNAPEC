@@ -1,0 +1,128 @@
+﻿@page
+@using RentCarUnapec.Core.Enums
+@using RentCarUnapec.Core.Models
+@model RentCarUnapec.Pages.CarRentInformation.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Modificar Renta</h1>
+
+<hr />
+@{
+    if (Model.CarRentInformation.RentStateId != (int)RentStateEnum.Active)
+    {
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <form method="post" asp-page-handler="Cancel" asp-route-id="@Model.CarRentInformation.Id">
+                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    }
+}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <fieldset>
+                <legend>Informacion Vehiculo</legend>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="CarRentInformation.VehicleId" class="control-label"></label>
+                        @Html.HiddenFor(x => x.CarRentInformation.VehicleId)
+                        <div class="input-group">
+                            <input class="form-control" id="vehicleInfo" readonly="readonly" asp-for="CarRentInformation.Vehicle.VehicleFullName"/>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#vehicleSearchModal"><span class="fas fa-search"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="CarRentInformation.Vehicle.ColorId" class="control-label"></label>
+                        <input class="form-control" id="vehicleInfoColor" readonly="readonly" asp-for="CarRentInformation.Vehicle.Color.Description"/>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="CarRentInformation.Vehicle.PlateNumber" class="control-label"></label>
+                        <input class="form-control" id="vehicleInfoPlate" readonly="readonly" asp-for="CarRentInformation.Vehicle.PlateNumber"/>
+                    </div>
+                </div>
+            </fieldset>
+            <hr />
+            <fieldset>
+                <legend>Informacion de Cliente</legend>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        @Html.HiddenFor(x => x.CarRentInformation.ClientId)
+                        <label asp-for="CarRentInformation.ClientId" class="control-label"></label>
+                        <div class="input-group">
+                            <input class="form-control" id="clientInfo" readonly="readonly" asp-for="CarRentInformation.Client.Name"/>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button"><span class="fas fa-search" data-toggle="modal" data-target="#clientSearchModal"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="CarRentInformation.Client.IdentityNumber" class="control-label"></label>
+                        <input class="form-control" id="clientInfoIdentity" readonly="readonly" asp-for="CarRentInformation.Client.IdentityNumber"/>
+                    </div>
+                </div>
+            </fieldset>
+            <hr />
+            <fieldset>
+                <legend>Informacion de Renta</legend>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CarRentInformation.RentDay" class="control-label"></label>
+                        <input asp-for="CarRentInformation.RentDay" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="CarRentInformation.RentDay" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="CarRentInformation.ReturnDay" class="control-label"></label>
+                        <input asp-for="CarRentInformation.ReturnDay" class="form-control" />
+                        <span asp-validation-for="CarRentInformation.ReturnDay" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CarRentInformation.AmountPerDay" class="control-label"></label>
+                        <input asp-for="CarRentInformation.AmountPerDay" class="form-control numberOnlyInput" />
+                        <span asp-validation-for="CarRentInformation.AmountPerDay" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="CarRentInformation.RentDays" class="control-label"></label>
+                        <input asp-for="CarRentInformation.RentDays" class="form-control numberOnlyInput" type="text" maxlength="3" />
+                        <span asp-validation-for="CarRentInformation.RentDays" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CarRentInformation.Comment" class="control-label"></label>
+                    <input asp-for="CarRentInformation.Comment" class="form-control alphaNumberOnlyInput" />
+                    <span asp-validation-for="CarRentInformation.Comment" class="text-danger"></span>
+                </div>
+            </fieldset>
+            <input type="hidden" asp-for="CarRentInformation.Id" />
+            <input type="hidden" asp-for="CarRentInformation.RentSequence" />
+            <input type="hidden" asp-for="CarRentInformation.EmployeeId" />
+            <input type="hidden" asp-for="CarRentInformation.RentStateId" />
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-light">Volver <span class="fas fa-undo"></span></a>
+            </div>
+        </form>
+        <div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="Vehicle/_VehicleSearch" model="new Vehicle()"></partial>
+<partial name="Client/_ClientSearch" model="new Client()"></partial>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Vehicle/vehicleSearchPartial.js"></script>
+    <script src="~/js/Client/clientSearch.js"></script>
+}
